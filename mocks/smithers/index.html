@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COOKED — talk is cheap, ship or get roasted</title>
+<style>
+  :root{
+    --bg:#120806;
+    --ember:#ff5722;
+    --flame:#ff9800;
+    --heat:#ffca28;
+    --char:#1c0f0b;
+    --ash:#7a6a63;
+    --cream:#fff3e6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(255,87,34,.35), transparent 60%),
+      radial-gradient(800px 500px at 85% 110%, rgba(255,152,0,.18), transparent 60%),
+      var(--bg);
+    color:var(--cream);
+    display:flex;align-items:center;justify-content:center;
+    min-height:100%;padding:24px;overflow-x:hidden;
+  }
+  .phone{
+    width:400px;max-width:100%;
+    background:linear-gradient(180deg,#1a0d09,#0d0705);
+    border:1px solid rgba(255,152,0,.25);
+    border-radius:38px;
+    box-shadow:0 40px 120px rgba(255,87,34,.25), inset 0 1px 0 rgba(255,255,255,.05);
+    padding:26px 22px 30px;
+    position:relative;overflow:hidden;
+  }
+  .phone::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(400px 200px at 50% 0%, rgba(255,202,40,.12), transparent 70%);
+  }
+  .topbar{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ash);letter-spacing:.5px}
+  .brand{
+    margin-top:22px;
+    font-weight:900;font-size:44px;letter-spacing:-2px;line-height:.9;
+    background:linear-gradient(180deg,var(--heat),var(--ember));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .brand .flame{font-size:30px;-webkit-text-fill-color:initial}
+  .tag{margin-top:6px;color:var(--ash);font-size:13px;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+
+  .pitch{
+    margin-top:20px;font-size:23px;line-height:1.25;font-weight:800;letter-spacing:-.5px;
+  }
+  .pitch .hot{color:var(--flame)}
+
+  .card{
+    margin-top:22px;
+    background:linear-gradient(180deg,#20110c,#160b08);
+    border:1px solid rgba(255,152,0,.18);
+    border-radius:22px;padding:18px;position:relative;
+  }
+  .card .who{display:flex;align-items:center;gap:12px}
+  .avatar{
+    width:46px;height:46px;border-radius:50%;flex:none;
+    background:conic-gradient(from 200deg,var(--ember),var(--heat),var(--flame),var(--ember));
+    display:grid;place-items:center;font-weight:900;color:#20110c;font-size:18px;
+  }
+  .who .meta b{display:block;font-size:15px}
+  .who .meta span{font-size:12px;color:var(--ash)}
+  .claim{
+    margin-top:14px;font-size:16px;line-height:1.4;font-weight:600;
+    padding:12px 14px;border-left:3px solid var(--ember);
+    background:rgba(255,87,34,.08);border-radius:0 12px 12px 0;
+  }
+  .heatrow{display:flex;align-items:center;gap:10px;margin-top:14px}
+  .meter{flex:1;height:10px;border-radius:20px;background:#2a1712;overflow:hidden}
+  .meter span{display:block;height:100%;width:18%;border-radius:20px;
+    background:linear-gradient(90deg,var(--heat),var(--ember));transition:width .5s cubic-bezier(.2,.9,.2,1)}
+  .heatlbl{font-size:11px;color:var(--ash);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+
+  .cook{
+    margin-top:20px;width:100%;border:0;cursor:pointer;
+    padding:18px;border-radius:18px;font-weight:900;font-size:18px;letter-spacing:.5px;
+    color:#1a0d09;text-transform:uppercase;
+    background:linear-gradient(180deg,var(--heat),var(--ember));
+    box-shadow:0 12px 30px rgba(255,87,34,.4), inset 0 1px 0 rgba(255,255,255,.4);
+    transition:transform .1s ease, filter .2s;
+  }
+  .cook:active{transform:scale(.97)}
+  .cook.done{background:linear-gradient(180deg,#3a2019,#2a1712);color:var(--flame);
+    box-shadow:none;border:1px solid rgba(255,152,0,.3)}
+
+  .verdict{
+    margin-top:16px;font-size:14px;line-height:1.45;color:var(--cream);
+    opacity:0;max-height:0;overflow:hidden;transition:opacity .4s, max-height .4s;
+  }
+  .verdict.show{opacity:1;max-height:160px}
+  .verdict .stamp{
+    display:inline-block;font-weight:900;letter-spacing:1px;color:var(--ember);
+    border:2px solid var(--ember);padding:4px 10px;border-radius:8px;transform:rotate(-4deg);
+    font-size:13px;margin-bottom:8px;
+  }
+  .dock{margin-top:24px;display:flex;justify-content:space-around;color:var(--ash);font-size:11px;font-weight:700;letter-spacing:.5px}
+  .dock div{opacity:.5}
+  .dock .active{opacity:1;color:var(--flame)}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <div class="topbar"><span>9:41</span><span>🔥 3-day streak</span></div>
+
+    <div class="brand"><span class="flame">🔥</span>COOKED</div>
+    <div class="tag">talk is cheap · ship or get roasted</div>
+
+    <div class="pitch">
+      Every big idea in the group chat gets one dare:
+      <span class="hot">“okay bet — you build it.”</span>
+    </div>
+
+    <div class="card">
+      <div class="who">
+        <div class="avatar">J</div>
+        <div class="meta"><b>jordan_ships</b><span>flexed 4 min ago</span></div>
+      </div>
+      <div class="claim">“bro I could build a better Uber in a weekend fr 💀”</div>
+      <div class="heatrow">
+        <span class="heatlbl">Heat</span>
+        <div class="meter"><span id="bar"></span></div>
+        <span class="heatlbl" id="pct">18%</span>
+      </div>
+    </div>
+
+    <button class="cook" id="cook">🔥 Cook him</button>
+
+    <div class="verdict" id="verdict">
+      <span class="stamp">CHALLENGE ISSUED</span><br>
+      Jordan has <b>72 hours</b> to ship a demo — or the whole chat watches the ratio.
+      The pot's at <b>$40</b> and climbing.
+    </div>
+
+    <div class="dock">
+      <div class="active">🔥 Feed</div>
+      <div>🎯 Dares</div>
+      <div>🏆 Board</div>
+      <div>👤 You</div>
+    </div>
+  </div>
+
+<script>
+  const btn = document.getElementById('cook');
+  const bar = document.getElementById('bar');
+  const pct = document.getElementById('pct');
+  const verdict = document.getElementById('verdict');
+  let cooked = false;
+  btn.addEventListener('click', () => {
+    if (cooked) return;
+    cooked = true;
+    bar.style.width = '94%';
+    pct.textContent = '94%';
+    btn.textContent = '😮‍💨 He got cooked';
+    btn.classList.add('done');
+    verdict.classList.add('show');
+  });
+</script>
+</body>
+</html>
